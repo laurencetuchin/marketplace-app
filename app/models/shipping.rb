@@ -1,4 +1,4 @@
-class Payments < ApplicationRecord
+class Shipping < ApplicationRecord
 # Let a user pay for their products in checkout
     belongs_to :user
     belongs_to :order
