@@ -1,4 +1,59 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
+<p>
+  <strong>Title:</strong>
+  <%= @product.title %>
+</p>
+<p>
+  <strong>Price:</strong>
+  <%= number_to_currency @product.price %>
+</p>
+<p>
+  <strong>Id:</strong>
+  <%= @product.id %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @product.size %>
+</p>
+
+<p>
+  <strong>Colour:</strong>
+  <%= @product.colour %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @product.location %>
+</p>
+
+<p>
+  <strong>Condition:</strong>
+  <%= @product.condition %>
+</p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @product.brand %>
+</p>
+
+
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+<div style="width:200px; height:auto">
+</div>
+
+ <div class="show-image-wrap">       
+                <%= @product.image %>
+                   
+      </div> 
+
+<h4 class="title is-5 has-text-centered"><%= number_to_currency(@product.price) %></h4>
+<p class="has-text-centered mb4">Sold by <%= @product.user.name %></p>
+<div> <%= button_to 'Add to Cart', line_items_path(product_id: @product), class: "btn btn-primary" %> </div>
+
+<%= link_to 'Edit', edit_product_path(@product) %> 
 <%= link_to 'Back', products_path %>

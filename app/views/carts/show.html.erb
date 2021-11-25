@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<p>Hello mr Cart
+</p>
+<%= render(@cart.line_items) %>
+# button to empty cart
+<%= link_to 'Empty Cart', cart_path(@cart), method: :delete, data: { confirm: 'Are you sure?' } %>
+# display cart total
+<span>Total: <%= number_to_currency @cart.total_price, unit: '$' %></span>
+

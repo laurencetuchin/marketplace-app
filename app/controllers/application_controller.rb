@@ -1,4 +1,9 @@
 class ApplicationController < ActionController::Base
-    before_action :authenticate_user!
+    include CurrentCart
+    before_action :authenticate_user!, except: [:welcome]
+    before_action :set_cart
+    protect_from_forgery with: :exception
+
 
 end
+

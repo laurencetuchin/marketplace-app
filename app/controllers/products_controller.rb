@@ -1,9 +1,11 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
+  # before_action :user_signed_in?
+  before_action :authenticate_user!
 
   # GET /products or /products.json
   def index
-    @products = Product.all
+    @products = Product.all.order("created_at desc")
   end
 
   # GET /products/1 or /products/1.json
@@ -12,7 +14,7 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    @product = Product.new
+    @product = current_user.products.build
   end
 
   # GET /products/1/edit
@@ -21,8 +23,7 @@ class ProductsController < ApplicationController
 
   # POST /products or /products.json
   def create
-    @product = Product.new(product_params)
-
+    @product = current_user.products.build(product_params)
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: "Product was successfully created." }
@@ -56,14 +57,30 @@ class ProductsController < ApplicationController
     end
   end
 
+
+  # Only allow an authorised user to delete their product
+  # def destroy
+  #   @product.destroy
+  #   if current_user == @product.user
+  #     @product.destroy
+  #   end
+  #   redirect_to products_url, notice: "Product was successfully destroyed."
+  # end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
     end
 
+    # Set authorised user to update their product with pundit
+    # def set_product
+    #   @product = current_user.products.find(params[:id])
+    # end
+
     # Only allow a list of trusted parameters through.
     def product_params
-      params.fetch(:product, {})
+      params.require(:product).permit(:title, :size, :colour, :location, :condition, :brand, :price, :description, :image)
     end
 end
