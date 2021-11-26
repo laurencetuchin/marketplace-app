@@ -9,7 +9,8 @@ class CreateProducts < ActiveRecord::Migration[6.1]
       t.string :brand
       t.decimal :price, precision: 8, scale: 2
       t.text :description
-
+      t.boolean :available, default: true
+      
       t.timestamps
     end
   end

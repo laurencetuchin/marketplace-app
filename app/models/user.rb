@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -14,6 +15,15 @@ class User < ApplicationRecord
   #   self.role ||= :buyer
   # end
 
+  def alias
+    return self.email.split('@')[0].capitalize
+  end
+
+  # Validates extra fields that arent preconfigured in devise.
+  validates :name, presence: true
+  validates :address, presence: true
+  validates :username, presence: true, uniqueness: true
+  validates :location, presence: true
 
   
 end

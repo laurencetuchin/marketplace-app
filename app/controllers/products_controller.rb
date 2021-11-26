@@ -2,10 +2,12 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
   # before_action :user_signed_in?
   before_action :authenticate_user!
+  rescue_from Pundit::NotAuthorizedError, with: :unauthorised
 
   # GET /products or /products.json
   def index
     @products = Product.all.order("created_at desc")
+    authorize @products
   end
 
   # GET /products/1 or /products/1.json
@@ -19,11 +21,13 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    authorize @product
   end
 
   # POST /products or /products.json
   def create
     @product = current_user.products.build(product_params)
+    @product.user = current_user
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: "Product was successfully created." }
@@ -37,8 +41,10 @@ class ProductsController < ApplicationController
 
   # PATCH/PUT /products/1 or /products/1.json
   def update
+    product = current_user.products.find(params[:id])
     respond_to do |format|
       if @product.update(product_params)
+        authorize @product
         format.html { redirect_to @product, notice: "Product was successfully updated." }
         format.json { render :show, status: :ok, location: @product }
       else
@@ -51,6 +57,7 @@ class ProductsController < ApplicationController
   # DELETE /products/1 or /products/1.json
   def destroy
     @product.destroy
+    authorize @products
     respond_to do |format|
       format.html { redirect_to products_url, notice: "Product was successfully destroyed." }
       format.json { head :no_content }
@@ -81,6 +88,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:title, :size, :colour, :location, :condition, :brand, :price, :description, :image)
+      params.require(:product).permit(:title, :size, :colour, :location, :condition, :brand, :price, :description, :image, :available, :user_id)
     end
 end

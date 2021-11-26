@@ -26,7 +26,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.16'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -56,8 +56,12 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "aws-sdk-s3", "~> 1.105", require: false
-# gem 'aws-eventstream', '~> 1.2.0'
+gem 'aws-eventstream', '~> 1.2.0'
 
 gem "stripe", "~> 5.40"
 gem "bootstrap_form", "~> 5.0"
 
+
+gem "pundit", "~> 2.1"
+gem "rolify"
+gem "faker"

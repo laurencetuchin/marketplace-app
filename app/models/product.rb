@@ -1,5 +1,10 @@
 class Product < ApplicationRecord
-    has_one_attached :image
+    # Resize attached image to 200x200
+    has_one_attached :image do |attachable|
+        attachable.variant :thumb, resize: "200x200"
+      end
+    
+
     belongs_to :user, optional: true
     has_many :line_items, dependent: :destroy
     before_destroy :ensure_not_referenced_by_any_line_item

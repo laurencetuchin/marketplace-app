@@ -4,6 +4,23 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :username %>
+    <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :address %>
+    <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :location %>
+    <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
     <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
   </div>
