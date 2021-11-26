@@ -1,6 +1,3 @@
-<p>Welcome Page 1
-</p>
-
 <h3>Some snowboards you might like: </h3>
 
 <div class="row">
@@ -8,6 +5,10 @@
   <div class="col-md-4">
   <div class="card" style="width: 18rem;">
     <div class="card-body">
+    <div class="show-image-wrap" width="200px" height="auto">       
+                <%= image_tag product.image, style: 'width:200px; height:auto' %>
+                   
+  </div>
       <h5 class="card-title"><%= product.title %></h5>
       <p class="card-text"><%= number_to_currency product.price %></p>
       <a href="/products/<%= product.id %>" class="btn btn-primary">View Product</a>
@@ -23,6 +24,10 @@
   <div class="col-md-4">
     <div class="card" style="width: 18rem;">
       <div class="card-body">
+      <div class="show-image-wrap" width="200px" height="auto">       
+                <%= image_tag product.image, style: 'width:200px; height:auto' %>
+                   
+  </div>
         <h5 class="card-title"><%= product.title %></h5>
         <p class="card-text"><%= number_to_currency product.price %></p>
         <a href="/products/<%= product.id %>" class="btn btn-primary">View Product</a>
