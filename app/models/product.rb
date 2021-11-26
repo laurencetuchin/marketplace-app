@@ -3,7 +3,7 @@ class Product < ApplicationRecord
     has_one_attached :image do |attachable|
         attachable.variant :thumb, resize: "200x200"
       end
-    
+    attr_reader :created_ago
 
     belongs_to :user, optional: true
     has_many :line_items, dependent: :destroy
@@ -57,6 +57,8 @@ class Product < ApplicationRecord
     def self.last_five_products_by_user(user)
         Product.where(user: user).order(created_at: :desc).limit(5)
     end
+
+
 
 
     # Sort products by price low to high
