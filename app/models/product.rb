@@ -33,7 +33,16 @@ class Product < ApplicationRecord
     # has_many :users, through: :transactions
 
     # seller of product can delete their product
+    
+    # Trying to make an array that loops through for the form select  
+    # def brand 
+    #     brand = %w{ Burton Libtech Rome }
+    #     brand.each do |item|
+    #         puts item
+    #     end
+    # end
 
+    
     BRAND = %w{ Burton Libtech Rome }
     CONDITION = %w{ New Excellent Good Fair Poor }
 

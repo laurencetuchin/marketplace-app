@@ -20,10 +20,10 @@ class User < ApplicationRecord
   end
 
   # Validates extra fields that arent preconfigured in devise.
-  validates :name, presence: true
-  validates :address, presence: true
-  validates :username, presence: true, uniqueness: true
-  validates :location, presence: true
+  validates :name, presence: true, length: { maximum: 50 }
+  validates :address, presence: true, length: { maximum: 250 }
+  validates :username, presence: true, uniqueness: true, length: { minimum: 2 } 
+  validates :location, presence: true, length: { minimum: 2 }
 
   
 end
