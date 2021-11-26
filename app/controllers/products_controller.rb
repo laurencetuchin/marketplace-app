@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   # GET /products or /products.json
   def index
     @products = Product.all.order("created_at desc")
-    authorize @products
+
   end
 
   # GET /products/1 or /products/1.json
@@ -57,7 +57,7 @@ class ProductsController < ApplicationController
   # DELETE /products/1 or /products/1.json
   def destroy
     @product.destroy
-    authorize @products
+    authorize @product
     respond_to do |format|
       format.html { redirect_to products_url, notice: "Product was successfully destroyed." }
       format.json { head :no_content }
